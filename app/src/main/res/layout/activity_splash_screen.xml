@@ -1,0 +1,69 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SplashScreen"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/logo_splash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:paddingTop="80dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/navegam_logo"
+            />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:paddingRight="30dp"
+            android:background="@color/colorAzulMedio"/>
+
+    </LinearLayout>
+
+    <!--Imagem dinamica muda conforme a atualizanção do banco interno-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/logo_splash"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/navegam_loading_final"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atualizando..."
+            android:textAlignment="center"
+            android:textColor="@color/colorAzulMedio"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/navegam_bg_splash"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
