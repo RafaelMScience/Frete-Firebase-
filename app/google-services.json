@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "79660190645",
+    "firebase_url": "https://navegamfrete.firebaseio.com",
+    "project_id": "navegamfrete",
+    "storage_bucket": "navegamfrete.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79660190645:android:fa931c0d81981654",
+        "android_client_info": {
+          "package_name": "com.navegam.fepsfrete"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79660190645-1nj5sdp22ifc1d3ok2p7jmpoiq0uk323.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.navegam.fepsfrete",
+            "certificate_hash": "84c27724ce5749d05bf6fda6fe49b69e261c390a"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfCMA_X5VnJPfNTInq8KhjJ7musGY2d7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79660190645-edflsrc6afnccd5i4b7q0umhv4832rtf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
