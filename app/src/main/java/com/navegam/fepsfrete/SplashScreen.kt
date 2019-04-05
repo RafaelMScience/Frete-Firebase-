@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageView
 
@@ -35,7 +36,7 @@ class SplashScreen : AppCompatActivity(), OnProgressBarListener {
         img_loading!!.setImageDrawable(navegamWave)
 
         // Set customised animator here
-        val animator = ValueAnimator.ofFloat(0, 1)
+        val animator = ValueAnimator.ofFloat(0F, 1F)
 
         navegamWave.setWaveAmplitude(5)
         animator.repeatCount = 0
@@ -45,7 +46,7 @@ class SplashScreen : AppCompatActivity(), OnProgressBarListener {
         navegamWave.isIndeterminate = true
 
         //barrar de progresso personalizado com numeracao
-        progressBar = findViewById<View>(R.id.progress_bar)
+        progressBar = findViewById<View>(R.id.progress_bar) as NumberProgressBar?
         progressBar!!.setOnProgressBarListener(this)
         timer = Timer()
         timer!!.schedule(object : TimerTask() {

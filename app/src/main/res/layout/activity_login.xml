@@ -58,13 +58,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:text="Criar uma conta"
             android:textColor="@color/colorAzulMedio"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:onClick="click_regist"/>
 
         <!-- progressBar para ser visivel apos a clicar o Login para mostrar carregando-->
         <ProgressBar
