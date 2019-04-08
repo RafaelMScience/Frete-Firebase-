@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:79660190645:android:fa931c0d81981654",
+        "mobilesdk_app_id": "1:79660190645:android:fec163d0fbf20e2e",
         "android_client_info": {
-          "package_name": "com.navegam.fepsfrete"
+          "package_name": "com.navegam.fepsfretefirebase"
         }
       },
       "oauth_client": [
         {
-          "client_id": "79660190645-1nj5sdp22ifc1d3ok2p7jmpoiq0uk323.apps.googleusercontent.com",
+          "client_id": "79660190645-9dh6p5bg89blhn88dgiti9knqik253c8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.navegam.fepsfrete",
+            "package_name": "com.navegam.fepsfretefirebase",
             "certificate_hash": "84c27724ce5749d05bf6fda6fe49b69e261c390a"
           }
         }

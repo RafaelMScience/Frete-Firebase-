@@ -19,12 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.navegam.cpfvalidador.Mask;
 import com.navegam.fepsfrete.R;
+import com.navegam.fepsfrete.Utils.CNPJUtil;
 import com.navegam.fepsfrete.Utils.CPFUtil;
 import com.navegam.fepsfrete.Utils.NavegamData;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText  edt_nameOwner, edt_boat,edt_cpf,edt_email,edt_cnpj;
+    private EditText  edt_nameOwner, edt_boat,edt_cpf,edt_email,edt_cnpj,edt_loginSign,edt_passwordSign;
     private NavegamData navegamData;
     private Button btn_regist;
 
@@ -43,6 +44,10 @@ public class SignUpActivity extends AppCompatActivity {
         edt_email = findViewById( R.id.edt_email );
         edt_cpf = findViewById( R.id.edt_CPF );
 
+        //login
+        edt_loginSign = findViewById( R.id.edt_loginSign );
+        edt_passwordSign = findViewById( R.id.edt_PasswordSign );
+
         btn_regist = findViewById( R.id.btn_register );
 
         navegamData = new NavegamData();
@@ -50,19 +55,21 @@ public class SignUpActivity extends AppCompatActivity {
         databaseReference = database.getReference();
 
         edt_cpf.addTextChangedListener( Mask.Companion.mask("###.###.###-##", edt_cpf));
+        edt_cnpj.addTextChangedListener( Mask.Companion.mask( "##.###.###/####-##",edt_cnpj ) );
 
         btn_regist.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (CPFUtil.Companion.myValidateCPF(edt_cpf.getText().toString().trim())) {
+                if ( CPFUtil.Companion.myValidateCPF( edt_cpf.getText().toString().trim())
+                        && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )) {
 
                     //Date save information in Firebase
                     SaveData();
 
                 } else {
 
-                    Toast.makeText( SignUpActivity.this, "CPF inválido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUpActivity.this, "Verifique CNPJ/CNPJ", Toast.LENGTH_SHORT).show();
                 }
             }
         } );
@@ -79,7 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    Toast.makeText( SignUpActivity.this, "existe", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( SignUpActivity.this, "Esse cadastro já existe", Toast.LENGTH_SHORT ).show();
 
                 }else {
                     databaseReference.child( "Navegam" ).child( navegamData.getNameBoat() ).child( navegamData.getNameOwner() ).setValue( navegamData ).addOnCompleteListener( new OnCompleteListener<Void>() {

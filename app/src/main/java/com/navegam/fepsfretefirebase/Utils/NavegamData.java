@@ -7,16 +7,38 @@ public class NavegamData {
     private String nameBoat;
     private String CNPJ;
 
+    private String login;
+    private String password;
+
     public NavegamData() {
 
     }
 
-    public NavegamData( String CPF, String nameOwner, String email, String nameBoat, String CNPJ) {
+    public NavegamData( String CPF, String nameOwner, String email, String nameBoat, String CNPJ,
+                        String login, String password) {
         this.CPF = CPF;
         this.nameOwner = nameOwner;
         this.email = email;
         this.nameBoat = nameBoat;
         this.CNPJ = CNPJ;
+        this.login = login;
+        this.password = password;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCPF() {
