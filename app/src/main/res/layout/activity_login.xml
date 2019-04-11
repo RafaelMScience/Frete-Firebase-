@@ -26,16 +26,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ic">
+            android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edt_login"
+                android:id="@+id/edt_usarnameLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_person"
                 android:drawablePadding="10dp"
-                android:hint="E-mail"
+                android:hint="Usuario"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,11 +42,10 @@
             android:id="@+id/layoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layoutLogin"
             app:passwordToggleEnabled="true">
 
             <EditText
-                android:id="@+id/edt_Password"
+                android:id="@+id/edt_passwordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_lock"

@@ -1,10 +1,11 @@
-package com.navegam.fepsfrete.Activity;
+package com.navegam.fepsfretefirebase.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,10 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.navegam.cpfvalidador.Mask;
-import com.navegam.fepsfrete.R;
-import com.navegam.fepsfrete.Utils.CNPJUtil;
-import com.navegam.fepsfrete.Utils.CPFUtil;
-import com.navegam.fepsfrete.Utils.NavegamData;
+import com.navegam.fepsfretefirebase.R;
+import com.navegam.fepsfretefirebase.Utils.CNPJUtil;
+import com.navegam.fepsfretefirebase.Utils.CPFUtil;
+import com.navegam.fepsfretefirebase.Utils.NavegamData;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -57,19 +58,21 @@ public class SignUpActivity extends AppCompatActivity {
         edt_cpf.addTextChangedListener( Mask.Companion.mask("###.###.###-##", edt_cpf));
         edt_cnpj.addTextChangedListener( Mask.Companion.mask( "##.###.###/####-##",edt_cnpj ) );
 
+        edt_loginSign.setFilters(new InputFilter[] {new InputFilter.AllCaps(  )});
+
         btn_regist.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if ( CPFUtil.Companion.myValidateCPF( edt_cpf.getText().toString().trim())
-                        && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )) {
+                if ( /*CPFUtil.Companion.myValidateCPF( edt_cpf.getText().toString().trim())
+                        && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )*/true) {
 
                     //Date save information in Firebase
                     SaveData();
 
                 } else {
 
-                    Toast.makeText( SignUpActivity.this, "Verifique CNPJ/CNPJ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUpActivity.this, "Verifique CPF/CNPJ", Toast.LENGTH_SHORT).show();
                 }
             }
         } );
@@ -82,17 +85,25 @@ public class SignUpActivity extends AppCompatActivity {
         navegamData.setCNPJ( edt_cnpj.getText().toString().trim() );
         navegamData.setNameOwner( edt_nameOwner.getText().toString() );
 
-        databaseReference.child( "Navegam" ).child( navegamData.getNameBoat() ).addListenerForSingleValueEvent( new ValueEventListener() {
+        //user and password
+        navegamData.setLogin( edt_loginSign.getText().toString().trim() );
+        navegamData.setPassword( edt_passwordSign.getText().toString().trim() );
+
+        //admin
+        navegamData.setAdminOwner( "owner" );
+
+        databaseReference.child( "Navegam" ).child( navegamData.getLogin() ).addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Toast.makeText( SignUpActivity.this, "Esse cadastro já existe", Toast.LENGTH_SHORT ).show();
 
                 }else {
-                    databaseReference.child( "Navegam" ).child( navegamData.getNameBoat() ).child( navegamData.getNameOwner() ).setValue( navegamData ).addOnCompleteListener( new OnCompleteListener<Void>() {
+                    databaseReference.child( "Navegam" ).child( navegamData.getLogin() ).setValue( navegamData ).addOnCompleteListener( new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+
                                 Toast.makeText( SignUpActivity.this, "Dados Salvo", Toast.LENGTH_SHORT ).show();
                                 Intent login = new Intent( SignUpActivity.this, LoginActivity.class );
                                 startActivity( login );

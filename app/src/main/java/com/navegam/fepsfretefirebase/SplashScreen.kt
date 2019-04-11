@@ -1,4 +1,4 @@
-package com.navegam.fepsfrete
+package com.navegam.fepsfretefirebase
 
 import androidx.appcompat.app.AppCompatActivity
 
@@ -11,7 +11,7 @@ import android.widget.ImageView
 
 import com.daimajia.numberprogressbar.NumberProgressBar
 import com.daimajia.numberprogressbar.OnProgressBarListener
-import com.navegam.fepsfrete.Activity.LoginActivity
+import com.navegam.fepsfretefirebase.Activity.LoginActivity
 import com.race604.drawable.wave.WaveDrawable
 
 import java.util.Timer

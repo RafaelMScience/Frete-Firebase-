@@ -1,4 +1,4 @@
-package com.navegam.fepsfrete;
+package com.navegam.fepsfretefirebase;
 
 import org.junit.Test;
 

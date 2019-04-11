@@ -1,4 +1,4 @@
-package com.navegam.fepsfrete.Utils;
+package com.navegam.fepsfretefirebase.Utils;
 
 public class NavegamData {
     private String CPF;
@@ -6,6 +6,8 @@ public class NavegamData {
     private String email;
     private String nameBoat;
     private String CNPJ;
+    private String adminOwner;
+    private String employees;
 
     private String login;
     private String password;
@@ -15,7 +17,7 @@ public class NavegamData {
     }
 
     public NavegamData( String CPF, String nameOwner, String email, String nameBoat, String CNPJ,
-                        String login, String password) {
+                        String login, String password, String adminOwner, String employees) {
         this.CPF = CPF;
         this.nameOwner = nameOwner;
         this.email = email;
@@ -23,6 +25,24 @@ public class NavegamData {
         this.CNPJ = CNPJ;
         this.login = login;
         this.password = password;
+        this.adminOwner = adminOwner;
+        this.employees = employees;
+    }
+
+    public String getAdminOwner() {
+        return adminOwner;
+    }
+
+    public void setAdminOwner(String adminOwner) {
+        this.adminOwner = adminOwner;
+    }
+
+    public String getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(String employees) {
+        this.employees = employees;
     }
 
     public String getLogin() {

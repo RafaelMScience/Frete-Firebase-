@@ -1,4 +1,4 @@
-package com.navegam.fepsfrete;
+package com.navegam.fepsfretefirebase;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals( "com.navegam.fepsfrete", appContext.getPackageName() );
+        assertEquals( "com.navegam.fepsfretefirebase", appContext.getPackageName() );
     }
 }

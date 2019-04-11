@@ -66,6 +66,7 @@
             android:layout_height="150dp"
             android:layout_gravity="bottom"
             android:src="@drawable/navegam_bg_splash"
+            android:scaleType="centerCrop"
             />
 
     </LinearLayout>
