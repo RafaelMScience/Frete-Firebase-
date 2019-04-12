@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
 
     private DatabaseReference databaseReference;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login = findViewById( R.id.btn_login );
 
+        sharedPreferences = getSharedPreferences( "Navegam",MODE_PRIVATE );
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child( "Navegam" );
         btn_login.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -46,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void Login() {
-        String usarname = edt_login.getText().toString().trim().toUpperCase();
+        final String usarname = edt_login.getText().toString().trim().toUpperCase();
         final String password = edt_password.getText().toString();
 
         try {
@@ -57,9 +61,28 @@ public class LoginActivity extends AppCompatActivity {
                     if (navegamData != null) {
                         if (password.equals( navegamData.getPassword() )) {
                             if (navegamData.getAdminOwner().equals( "owner" )) {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                String boat = String.valueOf( navegamData.getNameBoat() );
+                                editor.putString( "boatOwner",boat );
+                                editor.apply();
                                 Intent i = new Intent( LoginActivity.this, OwnerBoatActivity.class );
                                 startActivity( i );
-                            } else if (navegamData.getEmployees().equals( "employess" )) {
+                            } else if (navegamData.getEmployees().equals( "funcionario" )) {
+                                if (navegamData.getCPF().isEmpty()) {
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    String boat = String.valueOf( navegamData.getNameBoat() );
+                                    editor.putString( "boatFunc", boat );
+                                    editor.apply();
+                                    databaseReference.child( usarname ).removeValue();
+                                    Intent i = new Intent( LoginActivity.this, EmployeeRegistrationActivity.class );
+                                    startActivity( i );
+                                    finish();
+                                }else{
+
+                                    Intent i = new Intent( LoginActivity.this,EmployeeActivity.class );
+                                    startActivity( i );
+                                    finish();
+                                }
                                 Toast.makeText( LoginActivity.this, "Funcionario", Toast.LENGTH_SHORT ).show();
                             } else {
                                 Toast.makeText( LoginActivity.this, "Voce nao tem permissao", Toast.LENGTH_SHORT ).show();
