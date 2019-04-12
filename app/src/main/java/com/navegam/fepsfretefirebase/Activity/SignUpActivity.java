@@ -58,8 +58,6 @@ public class SignUpActivity extends AppCompatActivity {
         edt_cpf.addTextChangedListener( Mask.Companion.mask("###.###.###-##", edt_cpf));
         edt_cnpj.addTextChangedListener( Mask.Companion.mask( "##.###.###/####-##",edt_cnpj ) );
 
-        edt_loginSign.setFilters(new InputFilter[] {new InputFilter.AllCaps(  )});
-
         btn_regist.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +66,14 @@ public class SignUpActivity extends AppCompatActivity {
                         && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )*/true) {
 
                     //Date save information in Firebase
-                    SaveData();
+
+                    if (edt_loginSign.getText().toString().isEmpty()){
+                        edt_loginSign.setError( "Vazio" );
+                    }else if (edt_passwordSign.getText().toString().isEmpty()){
+                        edt_passwordSign.setError( "Vazio" );
+                    }else {
+                        SaveData();
+                    }
 
                 } else {
 
@@ -86,8 +91,8 @@ public class SignUpActivity extends AppCompatActivity {
         navegamData.setNameOwner( edt_nameOwner.getText().toString() );
 
         //user and password
-        navegamData.setLogin( edt_loginSign.getText().toString().trim() );
-        navegamData.setPassword( edt_passwordSign.getText().toString().trim() );
+        navegamData.setLogin( edt_loginSign.getText().toString().trim().toUpperCase() );
+        navegamData.setPassword( edt_passwordSign.getText().toString() );
 
         //admin
         navegamData.setAdminOwner( "owner" );

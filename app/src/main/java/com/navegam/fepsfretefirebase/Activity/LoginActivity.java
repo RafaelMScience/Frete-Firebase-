@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login = findViewById( R.id.btn_login );
 
-        edt_login.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child( "Navegam" );
         btn_login.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -49,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void Login() {
-        String usarname = edt_login.getText().toString();
+        String usarname = edt_login.getText().toString().trim().toUpperCase();
         final String password = edt_password.getText().toString();
 
         try {
@@ -57,18 +54,21 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     NavegamData navegamData = dataSnapshot.getValue( NavegamData.class );
-                    assert navegamData != null;
-                    if (password.equals( navegamData.getPassword() )) {
-                        if(navegamData.getAdminOwner().equals( "owner" )) {
-                            Intent i = new Intent( LoginActivity.this, MainActivity.class );
-                            startActivity( i );
-                        }else if(navegamData.getEmployees().equals( "employess" )){
-                            Toast.makeText( LoginActivity.this, "Funcionario", Toast.LENGTH_SHORT ).show();
-                        }else{
-                            Toast.makeText( LoginActivity.this, "Voce nao tem permissao", Toast.LENGTH_SHORT ).show();
+                    if (navegamData != null) {
+                        if (password.equals( navegamData.getPassword() )) {
+                            if (navegamData.getAdminOwner().equals( "owner" )) {
+                                Intent i = new Intent( LoginActivity.this, OwnerBoatActivity.class );
+                                startActivity( i );
+                            } else if (navegamData.getEmployees().equals( "employess" )) {
+                                Toast.makeText( LoginActivity.this, "Funcionario", Toast.LENGTH_SHORT ).show();
+                            } else {
+                                Toast.makeText( LoginActivity.this, "Voce nao tem permissao", Toast.LENGTH_SHORT ).show();
+                            }
+                        } else {
+                            Toast.makeText( LoginActivity.this, "Usuario/Senha Incorreto", Toast.LENGTH_SHORT ).show();
                         }
-                    } else {
-                        Toast.makeText( LoginActivity.this, "Usuario/Senha incorreto", Toast.LENGTH_SHORT ).show();
+                    }else{
+                        Toast.makeText( LoginActivity.this, "Usuario/Senha Incorreto", Toast.LENGTH_SHORT ).show();
                     }
                 }
 
