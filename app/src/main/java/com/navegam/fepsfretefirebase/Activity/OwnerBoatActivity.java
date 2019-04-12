@@ -23,7 +23,7 @@ public class OwnerBoatActivity extends AppCompatActivity implements EmployeeOwne
 
     private DatabaseReference databaseReferenceOwner;
 
-    NavegamData navegamData = new NavegamData();
+    NavegamData navegamDataFunc = new NavegamData();
 
     SharedPreferences sharedPreferences;
 
@@ -45,24 +45,24 @@ public class OwnerBoatActivity extends AppCompatActivity implements EmployeeOwne
 
     @Override
     public void applyTextes(String username, String password) {
-        navegamData.setLogin( username.trim().toUpperCase() );
-        navegamData.setPassword( password.trim() );
-        navegamData.setEmployees( "funcionario" );
+        navegamDataFunc.setLogin( username.trim().toUpperCase() );
+        navegamDataFunc.setPassword( password.trim() );
+        navegamDataFunc.setEmployees( "funcionario" );
 
-        navegamData.setAdminOwner( "" );
-        navegamData.setCPF( "" );
+        navegamDataFunc.setAdminOwner( "" );
+        navegamDataFunc.setCPF( "" );
 
-        String boatFunc = sharedPreferences.getString( "boatFunc","" );
-        navegamData.setNameBoat( boatFunc );
+        String boatFunc = sharedPreferences.getString( "boatOwner","" );
+        navegamDataFunc.setNameBoat( boatFunc );
 
-        databaseReferenceOwner.child( navegamData.getLogin() ).addListenerForSingleValueEvent( new ValueEventListener() {
+        databaseReferenceOwner.child( navegamDataFunc.getLogin() ).addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Toast.makeText( OwnerBoatActivity.this, "nome ja existe", Toast.LENGTH_SHORT ).show();
 
                 }else {
-                    databaseReferenceOwner.child( navegamData.getLogin() ).setValue( navegamData ).addOnCompleteListener( new OnCompleteListener<Void>() {
+                    databaseReferenceOwner.child( navegamDataFunc.getLogin() ).setValue( navegamDataFunc ).addOnCompleteListener( new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {

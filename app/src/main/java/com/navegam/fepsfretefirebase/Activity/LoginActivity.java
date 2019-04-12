@@ -83,12 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity( i );
                                     finish();
                                 }
-                                Toast.makeText( LoginActivity.this, "Funcionario", Toast.LENGTH_SHORT ).show();
                             } else {
                                 Toast.makeText( LoginActivity.this, "Voce nao tem permissao", Toast.LENGTH_SHORT ).show();
                             }
-                        } else {
-                            Toast.makeText( LoginActivity.this, "Usuario/Senha Incorreto", Toast.LENGTH_SHORT ).show();
                         }
                     }else{
                         Toast.makeText( LoginActivity.this, "Usuario/Senha Incorreto", Toast.LENGTH_SHORT ).show();
