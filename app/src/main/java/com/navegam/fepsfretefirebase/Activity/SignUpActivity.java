@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,8 @@ import com.navegam.fepsfretefirebase.Utils.CNPJUtil;
 import com.navegam.fepsfretefirebase.Utils.CPFUtil;
 import com.navegam.fepsfretefirebase.Utils.NavegamData;
 
+import java.util.Objects;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText  edt_nameOwner, edt_boat,edt_cpf,edt_email,edt_cnpj,edt_loginSign,edt_passwordSign;
@@ -32,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
+
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,10 @@ public class SignUpActivity extends AppCompatActivity {
         edt_cnpj = findViewById( R.id.edt_CNPJ );
         edt_email = findViewById( R.id.edt_email );
         edt_cpf = findViewById( R.id.edt_CPF );
+
+        toolbar = findViewById( R.id.my_toolbar );
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("CADASTROS DONOS");
 
         //login
         edt_loginSign = findViewById( R.id.edt_loginSign );
@@ -62,8 +71,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if ( /*CPFUtil.Companion.myValidateCPF( edt_cpf.getText().toString().trim())
-                        && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )*/true) {
+                if (/* CPFUtil.Companion.myValidateCPF( edt_cpf.getText().toString().trim())
+                        && CNPJUtil.Companion.isCNPJ( edt_cnpj.getText().toString().trim() )*/ true) {
 
                     //Date save information in Firebase
 
@@ -96,6 +105,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         //admin
         navegamData.setAdminOwner( "owner" );
+
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull( getSupportActionBar() ).setTitle("CADASTRO DONO");
 
         databaseReference.child( "Navegam" ).child( navegamData.getLogin() ).addListenerForSingleValueEvent( new ValueEventListener() {
             @Override

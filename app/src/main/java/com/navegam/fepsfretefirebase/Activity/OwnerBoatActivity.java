@@ -2,6 +2,7 @@ package com.navegam.fepsfretefirebase.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ public class OwnerBoatActivity extends AppCompatActivity implements EmployeeOwne
 
     SharedPreferences sharedPreferences;
 
+    private Toolbar toolbarOwner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -35,6 +38,12 @@ public class OwnerBoatActivity extends AppCompatActivity implements EmployeeOwne
         databaseReferenceOwner = FirebaseDatabase.getInstance().getReference().child( "Navegam" );
 
         sharedPreferences = getSharedPreferences( "Navegam",MODE_PRIVATE );
+
+        toolbarOwner = findViewById( R.id.toolbarOwner );
+        setSupportActionBar(toolbarOwner);
+        getSupportActionBar().setTitle("Dono do Barco");
+
+
     }
 
     public void Register_Funcionario(View view) {

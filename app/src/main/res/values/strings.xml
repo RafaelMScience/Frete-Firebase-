@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">NavegamFrete(Firebase)</string>
+    <string name="email">Usuário</string>
+    <string name="password">Senha</string>
+    <string name="create_acc">Criar Conta</string>
+    <string name="login">Entrar</string>
+    <string name="terms_use">Termo de Uso</string>
+    <string name="update">atualizando...</string>
+    <string name="information_boat">Insira as informaçöes do barco</string>
+    <string name="owner_boat">Dono do barco</string>
+    <string name="boat_name">Nome do barco</string>
+    <string name="CNPJ">CNPJ</string>
+    <string name="your_information">Digite sua informação</string>
+    <string name="CPF">CPF</string>
+    <string name="login_details">Detalhes de login</string>
+    <string name="user">Usuário</string>
+    <string name="register">Registrar</string>
 </resources>

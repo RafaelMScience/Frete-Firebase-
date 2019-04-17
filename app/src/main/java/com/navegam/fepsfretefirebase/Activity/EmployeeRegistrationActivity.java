@@ -2,6 +2,7 @@ package com.navegam.fepsfretefirebase.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ public class EmployeeRegistrationActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     NavegamData navegamDataEmployee = new NavegamData();
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -48,6 +51,10 @@ public class EmployeeRegistrationActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences( "Navegam",MODE_PRIVATE );
 
         edt_CPFEmployee.addTextChangedListener( Mask.Companion.mask("###.###.###-##", edt_CPFEmployee));
+
+        toolbar = findViewById( R.id.toolbarEmRegis );
+        setSupportActionBar( toolbar );
+        setTitle( "Cadastro de Funcionarios" );
 
         btn_registerEmployee.setOnClickListener( new View.OnClickListener() {
             @Override

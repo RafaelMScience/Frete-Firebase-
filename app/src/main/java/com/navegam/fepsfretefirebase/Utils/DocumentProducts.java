@@ -1,6 +1,6 @@
 package com.navegam.fepsfretefirebase.Utils;
 
-public class DocumentoProdutos {
+public class DocumentProducts {
 
     public String stRemetente;
     public String stDestinatario;
@@ -15,7 +15,7 @@ public class DocumentoProdutos {
     public String stValorPago;
 
 
-    public DocumentoProdutos(String stRemetente, String stDestinatario, String stCidade_des, String stCidade_ori, String stTel, String stData_viagem, String stDescricao, String stQuantidade, String stValor, String stValorFrete, String stValorPago) {
+    public DocumentProducts(String stRemetente, String stDestinatario, String stCidade_des, String stCidade_ori, String stTel, String stData_viagem, String stDescricao, String stQuantidade, String stValor, String stValorFrete, String stValorPago) {
         this.stRemetente = stRemetente;
         this.stDestinatario = stDestinatario;
         this.stCidade_des = stCidade_des;
@@ -29,7 +29,7 @@ public class DocumentoProdutos {
         this.stValorPago = stValorPago;
     }
 
-    public DocumentoProdutos(){}
+    public DocumentProducts(){}
 
     public String getStRemetente() {
         return stRemetente;

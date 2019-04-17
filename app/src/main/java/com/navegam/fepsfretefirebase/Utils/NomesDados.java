@@ -1,4 +1,4 @@
-package com.example.navegamfrete;
+package com.navegam.fepsfretefirebase.Utils;
 
 public class NomesDados {
 
