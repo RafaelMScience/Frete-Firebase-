@@ -1,16 +1,20 @@
 package com.navegam.fepsfretefirebase.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.navegam.cpfvalidador.Mask;
 import com.navegam.fepsfretefirebase.R;
 import com.navegam.fepsfretefirebase.Utils.Document;
 import com.navegam.fepsfretefirebase.Utils.NomesDados;
@@ -22,10 +26,14 @@ public class ProductsRegisterActivity extends AppCompatActivity {
 
     int i = 0;
     public Button btnEnvia;
-    private EditText edtRem,edtValor,edtQtd,edtDestinario,edtTelRem,edtOrig,edtDest,edtvigem,edtDesc
+    private EditText edtRem,edtValor,edtQtd,edtDestinario,edtTelRem,edtOrig,edtDest,edtViagem,edtDesc
             ,edtVPago,edtVFrete;
 
     Map<String, Object> user = new HashMap<>();
+
+    private Toolbar toolbar;
+
+    SharedPreferences sharedPreferences;
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
@@ -44,15 +52,23 @@ public class ProductsRegisterActivity extends AppCompatActivity {
         edtQtd = findViewById(R.id.edt_Quant);
         edtDestinario = findViewById(R.id.edt_Destinario);
         edtDest = findViewById(R.id.edt_Dest);
-        edtvigem = findViewById(R.id.edt_Data);
+        edtViagem = findViewById(R.id.edt_Data);
         edtVPago = findViewById(R.id.edt_VPago);
         edtVFrete = findViewById(R.id.edt_VFrete);
+
+        toolbar = findViewById( R.id.toolbarRegistProct );
+        setSupportActionBar( toolbar );
+        setTitle( "Cadastro de Produtos" );
+
+        sharedPreferences = getSharedPreferences( "Navegam",MODE_PRIVATE );
+        final String boatFunc = sharedPreferences.getString( "boatFunc","" );
+
+        edtViagem.addTextChangedListener( Mask.Companion.mask("##/##/####", edtViagem));
+
 
         btnEnvia.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CollectionReference frete = firestore.collection(""+edtDest.getText().toString());
-                frete.document(""+i).set(user);
 
                 saveNote(v);
             }
@@ -70,14 +86,21 @@ public class ProductsRegisterActivity extends AppCompatActivity {
         String Qtd = edtQtd.getText().toString();
         String TelR = edtTelRem.getText().toString();
         String Rem = edtRem.getText().toString();
-        String Viagem = edtvigem.getText().toString();
+        String Viagem = edtViagem.getText().toString();
         String Des = edtDest.getText().toString();
         String ValorPago = edtVPago.getText().toString();
         String ValorFrete = edtVFrete.getText().toString();
 
+
+        sharedPreferences = getSharedPreferences( "Navegam",MODE_PRIVATE );
+        final String boatFunc = sharedPreferences.getString( "boatFunc","" );
+        final String nameFunc = sharedPreferences.getString( "nameFunc","" );
+
+
         // Create a new user with a first and last name
         Document doc = new Document( Rem, Destanatario, Des, Origem, TelR, Viagem, Title, Qtd, Valor, ValorFrete, ValorPago );
-        firestore.collection( "" + edtDest.getText().toString() ).document( ""+i ).set( doc );
+        firestore.collection( "" + boatFunc).document( ""+nameFunc )
+                .collection( ""+ TelR.trim() ).document().set( doc );
 
         Toast.makeText( this, "Salvo com Sucesso", Toast.LENGTH_SHORT ).show();
     }

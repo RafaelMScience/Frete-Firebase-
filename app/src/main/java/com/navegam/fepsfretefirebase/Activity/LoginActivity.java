@@ -71,13 +71,21 @@ public class LoginActivity extends AppCompatActivity {
                                 if (navegamData.getCPF().isEmpty()) {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     String boat = String.valueOf( navegamData.getNameBoat() );
+                                    String nameEmployee = String.valueOf( navegamData.getEmployees() );
                                     editor.putString( "boatFunc", boat );
+                                    editor.putString( "nameFunc", nameEmployee );
                                     editor.apply();
                                     databaseReference.child( usarname ).removeValue();
                                     Intent i = new Intent( LoginActivity.this, EmployeeRegistrationActivity.class );
                                     startActivity( i );
                                     finish();
                                 }else{
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    String boat = String.valueOf( navegamData.getNameBoat() );
+                                    String nameEmployee = String.valueOf( navegamData.getNameEmployees() );
+                                    editor.putString( "boatFunc", boat );
+                                    editor.putString( "nameFunc", nameEmployee );
+                                    editor.apply();
 
                                     Intent i = new Intent( LoginActivity.this,EmployeeActivity.class );
                                     startActivity( i );

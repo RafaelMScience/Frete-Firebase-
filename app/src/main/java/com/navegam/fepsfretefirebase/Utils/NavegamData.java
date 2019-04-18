@@ -8,6 +8,7 @@ public class NavegamData {
     private String CNPJ;
     private String adminOwner;
     private String employees;
+    private String nameEmployees;
 
     private String login;
     private String password;
@@ -17,7 +18,7 @@ public class NavegamData {
     }
 
     public NavegamData( String CPF, String nameOwner, String email, String nameBoat, String CNPJ,
-                        String login, String password, String adminOwner, String employees) {
+                        String login, String password, String adminOwner, String employees, String nameEmployees) {
         this.CPF = CPF;
         this.nameOwner = nameOwner;
         this.email = email;
@@ -27,6 +28,15 @@ public class NavegamData {
         this.password = password;
         this.adminOwner = adminOwner;
         this.employees = employees;
+        this.nameEmployees = nameEmployees;
+    }
+
+    public String getNameEmployees() {
+        return nameEmployees;
+    }
+
+    public void setNameEmployees(String nameEmployees) {
+        this.nameEmployees = nameEmployees;
     }
 
     public String getAdminOwner() {

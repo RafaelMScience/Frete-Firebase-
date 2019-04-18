@@ -26,7 +26,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorAzulClaro"
+            app:hintTextColor="@color/colorAzulMedio">
 
             <EditText
                 android:id="@+id/edt_usarnameLogin"
@@ -43,7 +45,9 @@
             android:id="@+id/layoutPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/colorAzulClaro"
+            app:hintTextColor="@color/colorAzulMedio">
 
             <EditText
                 android:id="@+id/edt_passwordLogin"

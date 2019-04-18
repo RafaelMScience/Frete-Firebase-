@@ -43,6 +43,7 @@ public class EmployeeRegistrationActivity extends AppCompatActivity {
         edt_CPFEmployee = findViewById( R.id.edt_CPFEmployee );
         edt_loginEmployee = findViewById( R.id.edt_loginEmployee );
         edt_passwordEmployee = findViewById( R.id.edt_passwordEmployee );
+        edt_nameEmployee = findViewById( R.id.edt_nameEmployee );
 
         btn_registerEmployee = findViewById( R.id.btn_registerEmployee );
 
@@ -70,6 +71,7 @@ public class EmployeeRegistrationActivity extends AppCompatActivity {
         navegamDataEmployee.setPassword( edt_passwordEmployee.getText().toString() );
         navegamDataEmployee.setCPF( edt_CPFEmployee.getText().toString() );
         navegamDataEmployee.setEmail( edt_emailEmployee.getText().toString() );
+        navegamDataEmployee.setNameEmployees( edt_nameEmployee.getText().toString() );
 
         navegamDataEmployee.setAdminOwner( "" );
         navegamDataEmployee.setEmployees( "funcionario" );
